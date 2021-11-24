@@ -1,0 +1,12 @@
+.search-bar-container{
+    margin-top: 20%;
+}
+
+input[type=text]{
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float:left;
+    width: 80%;
+    background: #f1f1f1; 
+}
