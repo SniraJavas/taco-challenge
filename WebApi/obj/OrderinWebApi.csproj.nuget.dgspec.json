@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\XL INTERNET AND PC\\source\\repos\\OrderinWebApi\\OrderinWebApi.csproj": {}
+    "C:\\Users\\XL INTERNET AND PC\\source\\repos\\OrderinAsess\\taco-challenge\\WebApi\\OrderinWebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\XL INTERNET AND PC\\source\\repos\\OrderinWebApi\\OrderinWebApi.csproj": {
+    "C:\\Users\\XL INTERNET AND PC\\source\\repos\\OrderinAsess\\taco-challenge\\WebApi\\OrderinWebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\XL INTERNET AND PC\\source\\repos\\OrderinWebApi\\OrderinWebApi.csproj",
+        "projectUniqueName": "C:\\Users\\XL INTERNET AND PC\\source\\repos\\OrderinAsess\\taco-challenge\\WebApi\\OrderinWebApi.csproj",
         "projectName": "OrderinWebApi",
-        "projectPath": "C:\\Users\\XL INTERNET AND PC\\source\\repos\\OrderinWebApi\\OrderinWebApi.csproj",
+        "projectPath": "C:\\Users\\XL INTERNET AND PC\\source\\repos\\OrderinAsess\\taco-challenge\\WebApi\\OrderinWebApi.csproj",
         "packagesPath": "C:\\Users\\XL INTERNET AND PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\XL INTERNET AND PC\\source\\repos\\OrderinWebApi\\obj\\",
+        "outputPath": "C:\\Users\\XL INTERNET AND PC\\source\\repos\\OrderinAsess\\taco-challenge\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\XL INTERNET AND PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -51,6 +51,20 @@
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.0, )"
             },

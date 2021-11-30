@@ -1,4 +1,10 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using OrderinWebApi.Data;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<OrderinWebApiContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("OrderinWebApiContext")));
 
 // Add services to the container.
 
