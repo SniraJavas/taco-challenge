@@ -11,9 +11,10 @@ export class ListResturants extends Component {
         super(props)
         this.state = {
             resturants: [] ,
+            ordersDetails : [],
             searchingStr: "",
             filtered:[],
-            total : 0
+            totalDetails : 0
         }
     }
 
@@ -157,9 +158,7 @@ export class ListResturants extends Component {
       
     }
 
-    onSelectOrder = (event) =>{
 
-    }
     componentWillMount() {
         this.setState({
             resturants: [{
@@ -227,21 +226,46 @@ export class ListResturants extends Component {
         })
     }
 
+    onSelectOrder = (itemId,shopId,Price) => {
+        let orders = this.state.ordersDetails;
+        let total = this.state.totalDetails;
+        let index = -1;
+        let order = {item : itemId , shop : shopId}
+        for(var i =0 ; i < orders.length ; i++){
+            if(orders[i].item == itemId && orders[i].shop == shopId){
+                    index = i;
+            }
+        }
+        if(index != -1){
+            orders.splice(index,1)
+            total -= Price;
+        }else{
+            orders.push(order);
+            total += Price;
+        }
+       
+        this.setState({
+            ordersDetails : orders,
+            totalDetails : total
+        })
+
+      };
+
 
     render() {
-        let resturantsList = this.state.resturants.map((item,i) => {
+        let resturantsList = this.state.resturants.map((shop,i) => {
                 return (<><tr>
                     <td><img width="25%" height="25%" src={defaultImage} alt="resturant picture" /></td>
-                    <td><h5>{item.Name} - {item.City} - rated# {item.Rank} overall</h5> </td>
+                    <td><h5>{shop.Name} - {shop.City} - rated# {shop.Rank} overall</h5> </td>
                     
                 </tr>{
-                        item.Categories.map((item2,i2) =>{
+                        shop.Categories.map((food,i2) =>{
                           return (<>
-                                {item2.MenuItems.map((item3,i3)=>{
+                                {food.MenuItems.map((itemType,i3)=>{
                                     return(<>
-                                        <tr>
+                                        <tr>      
                                             <td></td>
-                                            <td><input type="checkbox" id={item3.Id} />{item3.Name} - R{item3.Price}</td>
+                                            <td><input onChange={(event)=> {this.onSelectOrder(event.target.value,shop.Id,itemType.Price)}} type="checkbox" id={itemType.Id} value={itemType.Id} />{itemType.Name} - R{itemType.Price}</td>
                                         </tr>
                                     </>)
                                 })}
@@ -257,7 +281,7 @@ export class ListResturants extends Component {
                   {resturantsList}
                 </table>
                           
-                <button>Order R({this.state.total}) </button>
+                <button>Order R({this.state.totalDetails}) </button>
             </div>
         </div>
     }
