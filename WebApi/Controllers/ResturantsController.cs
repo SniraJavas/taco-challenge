@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using OrderinWebApi.Models;
 
@@ -14,8 +15,8 @@ namespace OrderinWebApi.Controllers
         {
             _logger = logger;
         }
-
-        [HttpGet(Name = "GetWeatherForecast")]
+        [EnableCors("*")]
+        [HttpGet]
         public IEnumerable<Resturant> Get()
         {
             string json = System.IO.File.ReadAllText("Data/SampleData.json");

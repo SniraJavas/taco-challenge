@@ -1,7 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using OrderinWebApi.Data;
+
+var MyAllowSpecificOrigins = "*";
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      builder =>
+                      {
+                          builder.WithOrigins("*").AllowAnyHeader()
+                                                  .AllowAnyMethod();
+                      });
+});
 
 builder.Services.AddDbContext<OrderinWebApiContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("OrderinWebApiContext")));
@@ -24,6 +36,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthorization();
 
 app.MapControllers();
