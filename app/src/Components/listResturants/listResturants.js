@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './listResturants.css';
 import defaultImage from '../../Assert/images/default.png';
-import {GetResturants} from '../../Services/Api/resturantService';
 import BASE_URL from "../../constants";
 export class ListResturants extends Component {
 
@@ -105,7 +104,7 @@ export class ListResturants extends Component {
         let orders = this.state.ordersDetails;
         let total = this.state.totalDetails;
         let index = -1;
-        let order = {item : itemId , shop : shopId}
+        let order = {ItemId : itemId , ShopId : shopId}
         for(var i =0 ; i < orders.length ; i++){
             if(orders[i].item == itemId && orders[i].shop == shopId){
                     index = i;
@@ -125,6 +124,29 @@ export class ListResturants extends Component {
         })
 
       };
+
+      sendOrder=()=>{
+             
+        fetch(BASE_URL + "/api/Orders", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body:{
+                Total : this.state.totalDetails,
+                MenuItems : this.state.ordersDetails
+            }
+        }).then(results =>{
+            return results.json();
+        }).then(data =>{
+            console.log("data ",data)
+            this.setState({
+                resturants : data,
+                originalResturants : data
+            })
+        })
+      }
 
 
     render() {
@@ -156,7 +178,7 @@ export class ListResturants extends Component {
                   {resturantsList}
                 </table>
                           
-                <button>Order R({this.state.totalDetails}) </button>
+                <button onClick={()=>{ this.sendOrder()}}>Order R({this.state.totalDetails}) </button>
             </div>
         </div>
     }
